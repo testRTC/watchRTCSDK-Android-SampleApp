@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Mock-WebRTC Demo</string>
+    <string name="pref_speakerphone_key">speakerphone_preference</string>
+    <string name="pref_speakerphone_default">auto</string>
+    <string name="lbl_enter_meeting_id">Enter Meeting ID</string>
+    <string name="lbl_start_call">Start Meeting</string>
+    <string name="lbl_join_call">Join Meeting</string>
+    <string name="lbl_spearline_webrtc_demo">Spearline WebRTC Demo</string>
+    <string name="lbl_client">Client</string>
+    <string name="lbl_server">Server</string>
+</resources>
