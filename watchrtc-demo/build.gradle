@@ -19,15 +19,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    flavorDimensions 'env'
-    productFlavors {
-        staging {
-            dimension "env"
-        }
-        prod {
-            dimension "env"
-        }
-    }
     buildTypes {
         release {
             minifyEnabled false

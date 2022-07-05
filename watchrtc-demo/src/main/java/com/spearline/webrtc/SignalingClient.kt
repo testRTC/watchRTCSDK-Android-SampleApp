@@ -61,6 +61,7 @@ class SignalingClient(
 //                        Log.e(TAG, "Error adding document", e)
 //                    }
         }
+
         try {
             db.collection("calls")
                 .document(meetingID)
