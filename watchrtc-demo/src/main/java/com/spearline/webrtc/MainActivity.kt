@@ -2,17 +2,10 @@ package com.spearline.webrtc
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.spearline.utils.WatchRTCUtils
-import com.spearline.watchrtc.util.WatchRtcDebugLogger
-import kotlinx.android.synthetic.main.activity_debug.*
 import kotlinx.android.synthetic.main.activity_start.*
-import kotlinx.android.synthetic.main.activity_start.logs
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
     //https://proandroiddev.com/webrtc-sample-in-kotlin-e584681ed7fc
@@ -74,10 +67,6 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra(Constants.isServer, isServer)
                 startActivity(intent)
             }
-        }
-
-        logsButton.setOnClickListener {
-            startActivity(Intent(this, DebugActivity::class.java))
         }
     }
 }

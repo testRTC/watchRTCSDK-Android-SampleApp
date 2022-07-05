@@ -4,7 +4,6 @@ import com.spearline.watchrtc.sdk.EventType
 import com.spearline.watchrtc.sdk.RtcDataProvider
 import com.spearline.watchrtc.sdk.WatchRTC
 import com.spearline.watchrtc.sdk.WatchRTCConfig
-import com.spearline.watchrtc.util.WatchRtcDebugLogger
 
 
 object WatchRTCUtils {
@@ -24,7 +23,6 @@ object WatchRTCUtils {
         )
         watchRTC.setConfig(config)
         watchRTC.connect()
-        WatchRtcDebugLogger.start(roomId)
         watchRTC.addEvent(
             "custom_test_event",
             EventType.Global,
