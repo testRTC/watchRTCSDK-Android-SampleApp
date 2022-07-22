@@ -9,4 +9,3 @@ dependencyResolutionManagement {
 rootProject.name = "SpearlineWatchRTC"
 include ':app'
 include 'watchrtc-demo'
-include ':watch-rtc-sdk'
