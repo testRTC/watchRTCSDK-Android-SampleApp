@@ -4,6 +4,7 @@ import com.spearline.watchrtc.sdk.EventType
 import com.spearline.watchrtc.sdk.RtcDataProvider
 import com.spearline.watchrtc.sdk.WatchRTC
 import com.spearline.watchrtc.sdk.WatchRTCConfig
+import com.spearline.webrtc.BuildConfig
 
 
 object WatchRTCUtils {
@@ -14,7 +15,7 @@ object WatchRTCUtils {
 
     fun connect(roomId: String) {
         val config = WatchRTCConfig(
-            "",
+            BuildConfig.api_key,
             roomId,
             "PC_0",
             HashMap<String, ArrayList<String>>().apply {
