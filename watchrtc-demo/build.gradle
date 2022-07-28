@@ -15,6 +15,8 @@ android {
         targetSdkVersion 31
         versionCode 1
         versionName "1.0"
+        //Past project Api Key
+        buildConfigField 'String', 'api_key', ""
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -75,6 +77,15 @@ dependencies {
 
     //WebRTC library
     implementation 'org.webrtc:google-webrtc:1.0.32006'
+
+//    implementation(name:'watch-rtc-sdk-release', ext:'aar')
+//    implementation files('/libs/watch-rtc-sdk-release.aar')
+//    implementation files('/mnt/sdev3/krunal/testRTCGithub/watchRTCSDK-Android/watch-rtc-sdk/build/outputs/aar/watch-rtc-sdk-release.aar')
+    implementation files('./src/main/libs/watch-rtc-sdk-release.aar')
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0'
+    implementation 'com.google.code.gson:gson:2.9.0'
 
     //Timber logging library
     implementation 'com.jakewharton.timber:timber:5.0.1'

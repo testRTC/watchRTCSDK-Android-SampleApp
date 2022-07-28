@@ -14,11 +14,11 @@ object WatchRTCUtils {
 
     fun connect(roomId: String) {
         val config = WatchRTCConfig(
-            "staging:6d3873f0-f06e-4aea-9a25-1a959ab988cc",
+            "",
             roomId,
             "PC_0",
             HashMap<String, ArrayList<String>>().apply {
-                put("company", ArrayList<String>().apply { add("Moveo") })
+                put("company", ArrayList<String>().apply { add("Spearline") })
             }
         )
         watchRTC.setConfig(config)
