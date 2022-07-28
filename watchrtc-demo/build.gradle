@@ -15,7 +15,7 @@ android {
         targetSdkVersion 31
         versionCode 1
         versionName "1.0"
-        //Past project Api Key
+        //Please paste project Api Key here
         buildConfigField 'String', 'api_key', ""
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
