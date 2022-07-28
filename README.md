@@ -58,7 +58,7 @@ watchRTC.connect()
 //Please call disconnect() once the call have been disconnected.
 watchRTC.disconnect()
 ```
-## You can also use some of the other functions
+## You can also use some of the other functions of the WatchRTC SDK
 - watchRTC.setConfig(WatchRTCConfig) //Set WatchRTC configuration
 - watchRTC.addKeys(HashMap<String, ArrayList<String>>) //Will be sent to WatchRTC's backend.
 - watchRTC.setUserRating(Int, String) //Set user provided rating with an optional comment.
