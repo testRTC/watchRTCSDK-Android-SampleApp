@@ -30,7 +30,7 @@ The SDK is geared towards those who want to collect WebRTC related data from an 
 ```Kotlin
   private val rtcDataProvider = object : RtcDataProvider {
         override fun getStats(callback: GetStatsCallback) {
-            // get stats report and call callback.onStatsAvailable(rtcStatsReport)
+            // get stats report and call callback.onStatsAvailable(com.spearline.watchrtc.model.RTCStatsReport)
         }
     }
 ```
