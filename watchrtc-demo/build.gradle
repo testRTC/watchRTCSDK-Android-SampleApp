@@ -81,7 +81,7 @@ dependencies {
 //    implementation(name:'watch-rtc-sdk-release', ext:'aar')
 //    implementation files('/libs/watch-rtc-sdk-release.aar')
 //    implementation files('/mnt/sdev3/krunal/testRTCGithub/watchRTCSDK-Android/watch-rtc-sdk/build/outputs/aar/watch-rtc-sdk-release.aar')
-    implementation files('./src/main/libs/watch-rtc-sdk-release.aar')
+    implementation files('./libs/watch-rtc-sdk.aar')
     implementation 'com.squareup.okhttp3:okhttp:4.9.3'
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0'
