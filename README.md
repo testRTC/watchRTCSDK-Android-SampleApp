@@ -69,4 +69,4 @@ watchRTC.disconnect()
 
 ## If you are using the this sample app then you have to paste your api-key in the `watchrtc-demo` module.
 
-[here]: https://github.com/testRTC/watchRTCSDK-Android-SampleApp/raw/master/watchrtc-demo/src/main/libs/watch-rtc-sdk-release.aar
+[here]: https://github.com/testRTC/watchRTCSDK-Android-SampleApp/blob/master/watchrtc-demo/libs/watch-rtc-sdk.aar
