@@ -17,7 +17,7 @@ The SDK is geared towards those who want to collect WebRTC related data from an 
 2. Paste SDK in your app module libs directory
 3. Paste below code inside your app module build.gradle file.
     ```groovy
-    implementation files('./src/main/libs/watch-rtc-sdk-release.aar')
+    implementation files('./libs/watch-rtc-sdk.aar')
     implementation 'com.squareup.okhttp3:okhttp:4.9.3'
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0'
@@ -30,7 +30,7 @@ The SDK is geared towards those who want to collect WebRTC related data from an 
 ```Kotlin
   private val rtcDataProvider = object : RtcDataProvider {
         override fun getStats(callback: GetStatsCallback) {
-            // get stats report and call callback.onStatsAvailable(rtcStatsReport)
+            // get stats report and call callback.onStatsAvailable(com.spearline.watchrtc.model.RTCStatsReport)
         }
     }
 ```
@@ -45,7 +45,7 @@ val config = WatchRTCConfig(
 ```
 - Create WatchRTC object
 ```Kotlin
-watchRTC = WatchRTC(rtcDataProvider, config)
+val watchRTC = WatchRTC(config, rtcDataProvider)
 ```
 - Connect to watchRTC's servers
 ```Kotlin
