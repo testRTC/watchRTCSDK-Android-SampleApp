@@ -45,7 +45,7 @@ val config = WatchRTCConfig(
 ```
 - Create WatchRTC object
 ```Kotlin
-watchRTC = WatchRTC(rtcDataProvider, config)
+val watchRTC = WatchRTC(config, rtcDataProvider)
 ```
 - Connect to watchRTC's servers
 ```Kotlin
