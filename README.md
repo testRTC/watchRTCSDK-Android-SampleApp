@@ -6,6 +6,7 @@
 
 A simple native WebRTC demo using watchRTC android sdk. Here is the [link] for watchRTC sdk.
 
-## If you are using the this sample app then you have to paste your api-key in the `watchrtc-demo` module.
+## Note:
+- If you are using the this sample app then you have to paste your api-key in the `watchrtc-demo` module.
 
 [link]: https://github.com/testRTC/watchRTCSDK-Android
