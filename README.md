@@ -12,9 +12,15 @@ This demo app's purpose is to demonstrate the bare minimum required to establish
 ## Requirements
 - android studio chipmunk 2021.2.1
 - Android version 'Android-8' or later
-- Firebase project json file to get access of firestore database
+- Need to add Firebase project json file to get access of firestore database and run the sample application.
 
 ## Run instructions
+- Run application in two application.
+- Enter the same meeting id in both device. i.e. `Test-Spearline`.
+- Press `Start-Meeting` in one device once the call have been started then press `Join Meeting` on second device.
+- Now the call is active mode you can disconnect the call and check on watchrtc portal for call quality and other information.
+- To restart the process, kill both apps from the devices and repeat the above steps.
+
 
 ## Note
 - If you are using the this sample app then you have to paste your api-key in the `watchrtc-demo` module.
