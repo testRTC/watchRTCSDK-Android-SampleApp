@@ -6,17 +6,15 @@ plugins {
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 31
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 33
+    buildToolsVersion "33.0.0"
 
     defaultConfig {
         applicationId "com.spearline.spearlinewatchrtc.demo"
         minSdkVersion 26
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
-        //Please paste project Api Key here
-        buildConfigField 'String', 'api_key', ""
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -30,13 +28,12 @@ android {
     dataBinding {
         enabled = true
     }
-
     packagingOptions {
-        exclude("META-INF/kotlinx-io.kotlin_module")
-        exclude("META-INF/atomicfu.kotlin_module")
-        exclude("META-INF/kotlinx-coroutines-io.kotlin_module")
-        exclude("META-INF/kotlinx-coroutines-core.kotlin_module")
+        resources {
+            excludes += ['META-INF/kotlinx-io.kotlin_module', 'META-INF/atomicfu.kotlin_module', 'META-INF/kotlinx-coroutines-io.kotlin_module', 'META-INF/kotlinx-coroutines-core.kotlin_module']
+        }
     }
+
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -45,22 +42,25 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'com.spearline.webrtc'
 }
 
 dependencies {
 
     //noinspection GradleDependency
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.0'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
+    //WatchRTC SDK dependency
+    implementation 'com.spearline:testrtc-watchrtc-sdk:0.0.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
 
     implementation platform('com.google.firebase:firebase-bom:27.0.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
@@ -77,15 +77,6 @@ dependencies {
 
     //WebRTC library
     implementation 'org.webrtc:google-webrtc:1.0.32006'
-
-//    implementation(name:'watch-rtc-sdk-release', ext:'aar')
-//    implementation files('/libs/watch-rtc-sdk-release.aar')
-//    implementation files('/mnt/sdev3/krunal/testRTCGithub/watchRTCSDK-Android/watch-rtc-sdk/build/outputs/aar/watch-rtc-sdk-release.aar')
-    implementation files('./libs/watch-rtc-sdk.aar')
-    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
-    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0'
-    implementation 'com.google.code.gson:gson:2.9.0'
 
     //Timber logging library
     implementation 'com.jakewharton.timber:timber:5.0.1'
