@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import com.google.gson.Gson
 import com.spearline.utils.WatchRTCUtils
+import com.spearline.watchrtc.exception.ConnectionException
 import com.spearline.watchrtc.sdk.GetStatsCallback
 import com.spearline.watchrtc.sdk.RtcDataProvider
 import kotlinx.android.synthetic.main.activity_main.*
@@ -55,12 +56,19 @@ class RTCActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if (intent.hasExtra("meetingID"))
-            meetingID = intent.getStringExtra("meetingID")!!
+            meetingID = intent.getStringExtra("meetingID") ?: ""
+            meeting_name.text = meetingID
         if (intent.hasExtra("isJoin"))
             isJoin = intent.getBooleanExtra("isJoin", false)
 
 
-        WatchRTCUtils.init(rtcDataProvider)
+        try {
+            WatchRTCUtils.init(rtcDataProvider)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+
         checkCameraAndAudioPermission()
         audioManager.selectAudioDevice(RTCAudioManager.AudioDevice.SPEAKER_PHONE)
         switch_camera_button.setOnClickListener {
@@ -296,7 +304,11 @@ class RTCActivity : AppCompatActivity() {
         override fun getStats(callback: GetStatsCallback) {
             val peerCon = rtcClient.getPeerConn()
             peerCon?.getStats { rtcStatsReport ->
-                callback.onStatsAvailable(mapStats(rtcStatsReport))
+                try {
+                    callback.onStatsAvailable(mapStats(rtcStatsReport))
+                }catch (e: ConnectionException){
+                    e.printStackTrace()
+                }
             }
         }
     }

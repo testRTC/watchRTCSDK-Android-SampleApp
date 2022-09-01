@@ -96,4 +96,17 @@
             app:srcCompat="@drawable/ic_baseline_speaker_up_24" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/meeting_name"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_height="wrap_content"/>
+
 </RelativeLayout>

@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_start.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    //https://proandroiddev.com/webrtc-sample-in-kotlin-e584681ed7fc
     private val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         Constants.isIntiatedNow = true
         Constants.isCallEnded = true
+        meeting_id.setText("${meeting_id.text}:${getRandomNumber()}")
         start_meeting.setOnClickListener {
 
             /* val webrtcTest = WebrtcTest(this)
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
                 val temp = radioGroup.checkedRadioButtonId
                 val isServer = (temp == R.id.radioServer)
 
-                Thread.sleep(5000)
+                Thread.sleep(2500)
 
                 db.collection("calls")
                     .document(meeting_id.text.toString())
@@ -69,4 +70,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun getRandomNumber(): Int {
+        val rand = Random()
+        val maxNumber = 1000
+        return rand.nextInt(maxNumber) + 1
+    }
+
 }

@@ -54,6 +54,7 @@
                 android:padding="16dp"
                 android:textColor="@color/color_grey_color"
                 android:text="Test-Spearline"
+                android:inputType="number"
                 tools:text="ABC text" />
 
             <RadioGroup
