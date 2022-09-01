@@ -17,6 +17,7 @@ This demo app's purpose is to demonstrate the bare minimum required to establish
 - Need to add Firebase project json file to get access of firestore database and run the sample application.
 
 ## Run instructions
+- Add/Update api_key in `watchrtc-demo` module build.gradle file.
 - Run application in two device.
 - Enter the same meeting id in both device. i.e. `Test-Spearline:805`. The meeting id will append by random number so please enter the same number in second device to join the same meeting.
 - Press `Start-Meeting` in one device once the call have been started then press `Join Meeting` on second device.
@@ -24,9 +25,6 @@ This demo app's purpose is to demonstrate the bare minimum required to establish
 - To restart the process, kill both apps from the devices and repeat the above steps.
 
 ![Screenshot from 2022-09-01 19-06-46](https://user-images.githubusercontent.com/77330472/187927818-cfcabb91-15a6-4b84-99e0-1e53c228b463.png)
-
-## Note
-- If you are using the this sample app then you have to paste your api-key in the `watchrtc-demo` module build.gradle.
 
 [link]: https://github.com/testRTC/watchRTCSDK-Android
 
