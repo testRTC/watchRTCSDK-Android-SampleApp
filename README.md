@@ -21,8 +21,10 @@ This demo app's purpose is to demonstrate the bare minimum required to establish
 - Now the call is active mode you can disconnect the call and check on watchrtc portal for call quality and other information.
 - To restart the process, kill both apps from the devices and repeat the above steps.
 
+![sample_app](https://user-images.githubusercontent.com/77330472/182343851-fb4698e6-ede9-40c9-883c-834ac50f71a2.png)
 
 ## Note
 - If you are using the this sample app then you have to paste your api-key in the `watchrtc-demo` module.
 
 [link]: https://github.com/testRTC/watchRTCSDK-Android
+
