@@ -5,6 +5,7 @@ import com.spearline.watchrtc.sdk.EventType
 import com.spearline.watchrtc.sdk.RtcDataProvider
 import com.spearline.watchrtc.sdk.WatchRTC
 import com.spearline.watchrtc.sdk.WatchRTCConfig
+import com.spearline.webrtc.BuildConfig
 
 
 object WatchRTCUtils {
