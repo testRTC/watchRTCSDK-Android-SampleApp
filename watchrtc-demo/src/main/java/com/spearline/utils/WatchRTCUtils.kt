@@ -1,16 +1,17 @@
 package com.spearline.utils
 
+import com.spearline.watchrtc.logger.WatchRTCLoggerImpl
 import com.spearline.watchrtc.sdk.EventType
 import com.spearline.watchrtc.sdk.RtcDataProvider
 import com.spearline.watchrtc.sdk.WatchRTC
 import com.spearline.watchrtc.sdk.WatchRTCConfig
-import com.spearline.webrtc.BuildConfig
 
 
 object WatchRTCUtils {
     private lateinit var watchRTC: WatchRTC
     fun init(dataProvider: RtcDataProvider) {
         watchRTC = WatchRTC(dataProvider)
+        watchRTC.setLoggerImpl(WatchRTCLoggerImpl())
     }
 
     fun connect(roomId: String) {
@@ -39,7 +40,11 @@ object WatchRTCUtils {
     }
 
     fun logEvents(event: String, data: Any?) {
-        watchRTC.trace(event, data)
+        try {
+            watchRTC.trace(event, data)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
 }

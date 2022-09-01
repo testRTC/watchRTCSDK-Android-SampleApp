@@ -406,7 +406,7 @@ class RTCAudioManager(context: Context) {
             )
             if (audioManagerEvents != null) {
                 // Notify a listening client that audio device has been changed.
-                audioManagerEvents!!.onAudioDeviceChanged(selectedAudioDevice, audioDevices)
+                audioManagerEvents?.onAudioDeviceChanged(selectedAudioDevice, audioDevices)
             }
         }
         Log.d(TAG, "--- updateAudioDeviceState done")

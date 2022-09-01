@@ -11,7 +11,7 @@ import org.webrtc.*
 
 class RTCClient(
     context: Context,
-    val meetingID: String,
+    private val meetingID: String,
     observer: PeerConnection.Observer
 ) {
 
