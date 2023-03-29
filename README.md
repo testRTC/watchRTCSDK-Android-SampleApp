@@ -3,9 +3,6 @@
 
 A simple native WebRTC demo using watchRTC android sdk. Here is the [link] for watchRTC sdk.
 
-## Disclaimer
-This demo app's purpose is to demonstrate the bare minimum required to establish peer to peer connection with WebRTC to use of watchRTC android sdk. This is not a production ready code! In order to have a production VoIP app you will need to have a real signaling server deploy your own Turn server(s) and  integrate it.
-
 ## Requirements
 - Latest android studio Like Electric Eel and above
 - Android version 'Android-7' or later
