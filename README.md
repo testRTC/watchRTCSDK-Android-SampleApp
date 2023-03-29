@@ -21,8 +21,10 @@ A simple native WebRTC demo using watchRTC android sdk. Here is the [link] for w
 This sample app's purpose is to demonstrate the bare minimum required to establish peer to peer connection with WebRTC & main use to elaborate android WatchRTC SDK in application. 
 This is not a production ready code. 
 
-
-![Screenshot from 2022-09-01 19-06-46](https://user-images.githubusercontent.com/77330472/187927818-cfcabb91-15a6-4b84-99e0-1e53c228b463.png)
+<p align="center">
+  <img height="512" src="https://user-images.githubusercontent.com/77330472/228528826-f28ef847-610b-4193-b2c0-5b2a5fb3555b.jpg" />
+</p>
 
 [link]: https://github.com/testRTC/watchRTCSDK-Android
+
 
