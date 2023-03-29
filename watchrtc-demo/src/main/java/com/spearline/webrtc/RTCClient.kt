@@ -117,14 +117,18 @@ class RTCClient(
             peerConnectionFactory.createAudioTrack(LOCAL_TRACK_ID + "_audio", audioSource)
         localVideoTrack = peerConnectionFactory.createVideoTrack(LOCAL_TRACK_ID, localVideoSource)
         localVideoTrack?.addSink(localVideoOutput)
-        val localStream = peerConnectionFactory.createLocalMediaStream(LOCAL_STREAM_ID)
+        /*val localStream = peerConnectionFactory.createLocalMediaStream(LOCAL_STREAM_ID)
         localStream.addTrack(localVideoTrack)
-        localStream.addTrack(localAudioTrack)
+        localStream.addTrack(localAudioTrack)*/
 
 //        Thread.sleep(2000)
 
-        peerConnection?.addStream(localStream)
-        WatchRTCUtils.connect(meetingID)
+//        peerConnection?.addStream(localStream)
+
+        peerConnection?.addTrack(localAudioTrack)
+        peerConnection?.addTrack(localVideoTrack)
+
+        WatchRTCUtils.connect(localVideoOutput.context, meetingID)
     }
 
     private fun PeerConnection.call(sdpObserver: SdpObserver, meetingID: String) {
@@ -317,14 +321,14 @@ class RTCClient(
         val endCall = hashMapOf(
             "type" to "END_CALL"
         )
-        db.collection("calls").document(meetingID)
+        /*db.collection("calls").document(meetingID)
             .set(endCall)
             .addOnSuccessListener {
                 Log.e(TAG, "DocumentSnapshot added")
             }
             .addOnFailureListener { e ->
                 Log.e(TAG, "Error adding document", e)
-            }
+            }*/
         db.collection("calls").document(meetingID)
             .delete()
             .addOnSuccessListener {
