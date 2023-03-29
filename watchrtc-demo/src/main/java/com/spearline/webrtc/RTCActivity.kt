@@ -16,7 +16,7 @@ import com.spearline.utils.WatchRTCUtils
 import com.spearline.watchrtc.exception.ConnectionException
 import com.spearline.watchrtc.sdk.GetStatsCallback
 import com.spearline.watchrtc.sdk.RtcDataProvider
-import kotlinx.android.synthetic.main.activity_main.*
+import com.spearline.webrtc.databinding.ActivityMainBinding
 import org.json.JSONObject
 import org.webrtc.*
 
@@ -51,13 +51,16 @@ class RTCActivity : AppCompatActivity() {
         }
     }
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         if (intent.hasExtra("meetingID"))
             meetingID = intent.getStringExtra("meetingID") ?: ""
-            meeting_name.text = meetingID
+        binding.meetingName.text = meetingID
         if (intent.hasExtra("isJoin"))
             isJoin = intent.getBooleanExtra("isJoin", false)
 
@@ -71,45 +74,45 @@ class RTCActivity : AppCompatActivity() {
 
         checkCameraAndAudioPermission()
         audioManager.selectAudioDevice(RTCAudioManager.AudioDevice.SPEAKER_PHONE)
-        switch_camera_button.setOnClickListener {
+        binding.switchCameraButton.setOnClickListener {
             rtcClient.switchCamera()
         }
 
-        audio_output_button.setOnClickListener {
+        binding.audioOutputButton.setOnClickListener {
             if (inSpeakerMode) {
                 inSpeakerMode = false
-                audio_output_button.setImageResource(R.drawable.ic_baseline_hearing_24)
+                binding.audioOutputButton.setImageResource(R.drawable.ic_baseline_hearing_24)
                 audioManager.setDefaultAudioDevice(RTCAudioManager.AudioDevice.EARPIECE)
             } else {
                 inSpeakerMode = true
-                audio_output_button.setImageResource(R.drawable.ic_baseline_speaker_up_24)
+                binding.audioOutputButton.setImageResource(R.drawable.ic_baseline_speaker_up_24)
                 audioManager.setDefaultAudioDevice(RTCAudioManager.AudioDevice.SPEAKER_PHONE)
             }
         }
-        video_button.setOnClickListener {
+        binding.videoButton.setOnClickListener {
             if (isVideoPaused) {
                 isVideoPaused = false
-                video_button.setImageResource(R.drawable.ic_baseline_videocam_off_24)
+                binding.videoButton.setImageResource(R.drawable.ic_baseline_videocam_off_24)
             } else {
                 isVideoPaused = true
-                video_button.setImageResource(R.drawable.ic_baseline_videocam_24)
+                binding.videoButton.setImageResource(R.drawable.ic_baseline_videocam_24)
             }
             rtcClient.enableVideo(isVideoPaused)
         }
-        mic_button.setOnClickListener {
+        binding.micButton.setOnClickListener {
             if (isMute) {
                 isMute = false
-                mic_button.setImageResource(R.drawable.ic_baseline_mic_off_24)
+                binding.micButton.setImageResource(R.drawable.ic_baseline_mic_off_24)
             } else {
                 isMute = true
-                mic_button.setImageResource(R.drawable.ic_baseline_mic_24)
+                binding.micButton.setImageResource(R.drawable.ic_baseline_mic_24)
             }
             rtcClient.enableAudio(isMute)
         }
-        end_call_button.setOnClickListener {
+        binding.endCallButton.setOnClickListener {
             rtcClient.endCall(meetingID)
             WatchRTCUtils.disconnect()
-            remote_view.isGone = false
+            binding.remoteView.isGone = false
             Constants.isCallEnded = true
             finish()
             val intent = Intent(this@RTCActivity, MainActivity::class.java)
@@ -146,9 +149,19 @@ class RTCActivity : AppCompatActivity() {
 //                    )
                 }
 
-                override fun onAddStream(p0: MediaStream?) {
+                /*override fun onAddStream(p0: MediaStream?) {
                     super.onAddStream(p0)
                     p0?.videoTracks?.get(0)?.addSink(remote_view)
+                }*/
+
+                override fun onTrack(rtpTransceiver: RtpTransceiver?) {
+                    super.onTrack(rtpTransceiver)
+                    val track = rtpTransceiver?.receiver?.track()
+                    if (track != null && track.kind() == MediaStreamTrack.VIDEO_TRACK_KIND) {
+                        val videoTrack = track as VideoTrack
+//                            _remoteVideoSinkFlow.emit(videoTrack)
+                        videoTrack.addSink(binding.remoteView)
+                    }
                 }
 
                 override fun onIceConnectionChange(p0: PeerConnection.IceConnectionState?) {
@@ -200,9 +213,9 @@ class RTCActivity : AppCompatActivity() {
             }
         )
 
-        rtcClient.initSurfaceView(remote_view)
-        rtcClient.initSurfaceView(local_view)
-        rtcClient.startLocalVideoCapture(local_view)
+        rtcClient.initSurfaceView(binding.remoteView)
+        rtcClient.initSurfaceView(binding.localView)
+        rtcClient.startLocalVideoCapture(binding.localView)
         signallingClient = SignalingClient(meetingID, createSignallingClientListener())
         if (!isJoin)
             rtcClient.call(sdpObserver, meetingID)
@@ -210,20 +223,20 @@ class RTCActivity : AppCompatActivity() {
 
     private fun createSignallingClientListener() = object : SignalingClientListener {
         override fun onConnectionEstablished() {
-            end_call_button.isClickable = true
+            binding.endCallButton.isClickable = true
         }
 
         override fun onOfferReceived(description: SessionDescription) {
             rtcClient.onRemoteSessionReceived(description)
             Constants.isIntiatedNow = false
             rtcClient.answer(sdpObserver, meetingID)
-            remote_view_loading.isGone = true
+            binding.remoteViewLoading.isGone = true
         }
 
         override fun onAnswerReceived(description: SessionDescription) {
             rtcClient.onRemoteSessionReceived(description)
             Constants.isIntiatedNow = false
-            remote_view_loading.isGone = true
+            binding.remoteViewLoading.isGone = true
         }
 
         override fun onIceCandidateReceived(iceCandidate: IceCandidate) {
@@ -306,7 +319,7 @@ class RTCActivity : AppCompatActivity() {
             peerCon?.getStats { rtcStatsReport ->
                 try {
                     callback.onStatsAvailable(mapStats(rtcStatsReport))
-                }catch (e: ConnectionException){
+                } catch (e: ConnectionException) {
                     e.printStackTrace()
                 }
             }
@@ -328,6 +341,8 @@ class RTCActivity : AppCompatActivity() {
                     for (memberJsonKey in membersJson.keys()) {
                         statProperties[memberJsonKey] = membersJson.get(memberJsonKey)
                     }
+                    //M107 version changes #7996
+                    statProperties["type"] = stat.optString("type")
                     val watchRtcStat = com.spearline.watchrtc.model.RTCStatsReport.RTCStat(
                         stat.getLong("timestampUs"),
                         statProperties
