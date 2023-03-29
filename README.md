@@ -4,7 +4,7 @@
 A simple native WebRTC demo using watchRTC android sdk. Here is the [link] for watchRTC sdk.
 
 ## Requirements
-- Latest android studio Like Electric Eel and above
+- Latest android studio i.e. Electric Eel and above
 - Android version 'Android-7' or later
 - Need to add Firebase project json file, To get access of firestore database and run the sample application.
 
