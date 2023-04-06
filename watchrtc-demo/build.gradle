@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'com.google.firebase.crashlytics'
 }
 apply plugin: 'com.google.gms.google-services'
 
@@ -16,7 +17,7 @@ android {
         minSdkVersion 24
         targetSdkVersion 33
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
 
         //Please paste project Api Key here or read from local.property file
         buildConfigField("String", "api_key", properties.getProperty("api_key"))
@@ -66,13 +67,14 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 
-    implementation platform('com.google.firebase:firebase-bom:27.0.0')
+    implementation platform('com.google.firebase:firebase-bom:31.4.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     // Declare the dependency for the Cloud Firestore library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-firestore-ktx'
+    implementation 'com.google.firebase:firebase-crashlytics'
 
-    implementation "io.grpc:grpc-okhttp:1.32.2"
+    implementation "io.grpc:grpc-okhttp:1.52.1"
     //Ktor dependencies (you can retorfit instead)
     implementation("io.ktor:ktor-client-android:$ktor_version")
     implementation("io.ktor:ktor-client-websocket:$ktor_version")
